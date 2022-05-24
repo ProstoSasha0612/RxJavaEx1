@@ -39,6 +39,7 @@ class MainFragment : Fragment() {
                 "https://yandex.by",
             )
         )
+            .subscribe()
     }
 
     override fun onDestroy() {
