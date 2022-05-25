@@ -1,7 +1,8 @@
-package com.projectapp.rxjavaexercise1
+package com.projectapp.rxjavaexercise1.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.projectapp.rxjavaexercise1.R
 import com.projectapp.rxjavaexercise1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,9 +23,9 @@ class MainActivity : AppCompatActivity() {
         _binding = null
     }
 
-    private fun openMainFragment(){
+    private fun openMainFragment() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container,MainFragment.newInstance())
+            .replace(R.id.fragment_container, MainFragment.newInstance())
             .commit()
     }
 }

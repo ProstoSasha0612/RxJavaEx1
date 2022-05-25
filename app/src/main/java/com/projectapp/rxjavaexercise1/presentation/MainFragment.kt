@@ -1,4 +1,4 @@
-package com.projectapp.rxjavaexercise1
+package com.projectapp.rxjavaexercise1.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,16 +30,32 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.execute(
-            listOf(
-                "https://ismycomputeronfire.com/",
-                "https://ismycomputeronfire.com/",
-                "http://www.ismycomputeron.com/",
-                "https://google.com",
-                "https://yandex.by",
+        val testList = listOf(
+            "https://ismycomputeronfire.com/",
+            "https://ismycomputeronfire.com/",
+            "http://www.ismycomputeron.com/",
+            "https://google.com",
+            "https://yandex.by",
+            "https://ismycomputeronfire.com/",
+            "https://ismycomputeronfire.com/",
+            "http://www.ismycomputeron.com/",
+            "https://google.com",
+            "https://yandex.by",
+            "https://ismycomputeronfire.com/",
+            "https://ismycomputeronfire.com/",
+            "http://www.ismycomputeron.com/",
+            "https://google.com",
+            "https://yandex.by",
             )
-        )
-            .subscribe()
+
+        binding.button.setOnClickListener {
+            viewModel.getContent(testList)
+            val res = viewModel.getContent2(testList)
+            res.subscribe { result ->
+                binding.tvAnswer.text = result.size.toString()
+            }
+
+        }
     }
 
     override fun onDestroy() {
