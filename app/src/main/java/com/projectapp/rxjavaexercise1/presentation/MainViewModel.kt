@@ -18,7 +18,8 @@ class MainViewModel(
                 Log.d("MYTAG", "onSubscribe current thread: ${Thread.currentThread().name}")
             }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { responseList ->
+            .subscribe { responseList, error ->
+                println(" MYTAG current thread when subscribe: ${Thread.currentThread().name}")
                 Log.d("MYTAG", "response list size=${responseList.size}")
                 Log.d("MYTAG", "current thread: ${Thread.currentThread().name}")
                 responseList.forEach {

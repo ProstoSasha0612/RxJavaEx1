@@ -34,6 +34,9 @@ class MainFragment : Fragment() {
             "https://ismycomputeronfire.com/",
             "https://ismycomputeronfire.com/",
             "http://www.ismycomputeron.com/",
+
+            "https://fdsfsd", // bad url request
+
             "https://google.com",
             "https://yandex.by",
             "https://ismycomputeronfire.com/",

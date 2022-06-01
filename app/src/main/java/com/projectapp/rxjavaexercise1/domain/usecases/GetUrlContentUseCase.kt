@@ -8,7 +8,9 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 
 class GetUrlContentUseCase(
     private val getUrlApi: GetUrlApi,
@@ -62,11 +64,19 @@ class GetUrlContentUseCase(
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {
+                println("MYTAG Erorr was occurred: ${it.message} ")
+            }
             .toList()
         return res
     }
 
     private fun getServerResponse(url: String): Single<ResponseBody> {
         return getUrlApi.getUrlContentBody(url)
+            .onErrorReturn {
+                println("In request[$url] error occurred: ${it.cause}")
+                val errorResult = "In request[$url] error occurred: ${it.cause}".toResponseBody()
+                errorResult
+            }
     }
 }
