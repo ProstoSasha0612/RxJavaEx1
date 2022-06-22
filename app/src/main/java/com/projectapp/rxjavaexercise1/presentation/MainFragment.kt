@@ -1,6 +1,7 @@
 package com.projectapp.rxjavaexercise1.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,13 +52,16 @@ class MainFragment : Fragment() {
             "https://yandex.by",
             )
 
-        binding.button.setOnClickListener {
-            viewModel.getContent(testList)
-            val res = viewModel.getContent2(testList)
-            res.subscribe { result ->
-                binding.tvAnswer.text = result.size.toString()
-            }
+        setupResultStateListener()
 
+        binding.button.setOnClickListener {
+            viewModel.getContent(urlList = testList)
+        }
+    }
+
+    private fun setupResultStateListener(){
+        viewModel.urlsAnswerList.observe(this.viewLifecycleOwner){
+            binding.tvResult.text = it.last()
         }
     }
 
